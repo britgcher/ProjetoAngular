@@ -9,12 +9,15 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule, CommonModule],
 })
+
 export class HomePage {
-  produtos = [
-    { 'id': 0, 'nome': 'PS5',  'preco': 4000},
-    { 'id': 1, 'nome': 'PS4',  'preco': 2000},
-    { 'id': 2, 'nome': 'SuperNes',  'preco': 250},
-    { 'id': 3, 'nome': 'Polistation',  'preco': 800},
-    { 'id': 4, 'nome': 'Raspberry',  'preco': 150},
-  ]
+  alunos= [
+    /* {} objeto */
+   {nome: 'Marcio', telefone: '9999999999',ausente: true},
+   {nome: 'Marcos', telefone: '8888888888', ausente: false},
+   {nome: 'Luisa', telefone: '7887877877', ausente: false},
+   {nome: 'Lucas', telefone: '9988908000',ausente: true},
+  ];
+
+/* iteraçao */
 }
