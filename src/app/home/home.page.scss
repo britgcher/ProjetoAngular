@@ -25,3 +25,34 @@
 #container a {
   text-decoration: none;
 }
+
+.funcionario {
+  margin: 4px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.inserir{
+  margin: 10px;
+}
+
+.lista-filtro {
+  scale:0.9;
+}
+
+ion-item{
+  --background: rgb(0, 0, 0);
+}
+
+.dados{
+background: rgb(0, 0, 0);
+display: flex;
+justify-content: center;
+text-align: center;
+border: solid 0.5px rgb(174, 174, 197);
+align-items: center;
+}
+
+
+

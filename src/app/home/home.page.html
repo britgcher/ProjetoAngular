@@ -1,42 +1,98 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title class="centro">
-      <ion-label>Funcionário</ion-label>
-      <ion-button>Inserir</ion-button>
+      <h3 class="funcionario">Funcionário 
+        <ion-button class="inserir"><ion-icon name="add-outline"></ion-icon>
+        </ion-button></h3>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
- <ion-row>
-  <ion-col>
-    <ion-searchbar color="secondary" placeholder="Cargo"></ion-searchbar>
-  </ion-col>
-  <ion-col>
-    <ion-list>
-      <ion-item>
-        <ion-select aria-label="Fruit" placeholder="Filtrar" [multiple]="true">
-          <ion-select-option value="apples">Nome</ion-select-option>
-          <ion-select-option value="oranges">Cargo</ion-select-option>
-          <ion-select-option value="bananas">Cidade</ion-select-option>
-          <ion-select-option value="bananas">Telefone</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
-  </ion-col>
- </ion-row>
-
- <ion-row>
-  <ion-col>
-    <ion-list>
-      <ng-container *ngFor="let funcionario of this.funcionarios">
-        
-        <h2>Nome</h2>
+  <ion-row>
+    <ion-col size="10">
+      <ion-searchbar color="light" placeholder="Cargo"></ion-searchbar>
+    </ion-col>
+    <ion-col>
+      <ion-list class="lista-filtro">
         <ion-item>
-          Nome: {{ funcionario.Nome}} - {{funcionario.Cargo}}
+          <ion-select class="filtro" aria-label="filtro" placeholder="Filtrar" [multiple]="true">
+            <ion-select-option value="nome">Nome</ion-select-option>
+            <ion-select-option value="cargo">Cargo</ion-select-option>
+            <ion-select-option value="cidade">Cidade</ion-select-option>
+            <ion-select-option value="telefone">Telefone</ion-select-option>
+          </ion-select>
         </ion-item>
-      </ng-container>
-    </ion-list>
-  </ion-col>
- </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="dados">
+      <ion-list>
+        <h2>Nome</h2>
+        <ng-container *ngFor="let funcionario of this.funcionarios">
+          <ion-item class="Nome">
+            {{ funcionario.Nome}} 
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-col>
+
+    <ion-col class="dados">
+      <ion-list>
+        <h2>Cargo</h2>
+        <ng-container *ngFor="let funcionario of this.funcionarios">
+          <ion-item>
+            {{ funcionario.Cargo}} 
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-col>
+
+    <ion-col class="dados">
+      <ion-list>
+        <h2>Cidade</h2>
+        <ng-container *ngFor="let funcionario of this.funcionarios">
+          <ion-item>
+            {{ funcionario.Cidade}} 
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-col>
+
+    <ion-col class="dados">
+      <ion-list>
+        <h2>Telefone</h2>
+        <ng-container *ngFor="let funcionario of this.funcionarios">
+          <ion-item>
+            {{ funcionario.Fone}} 
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-col>
+ 
+    <ion-col class="dados">
+      <ion-list>
+        <h2>Funções</h2>
+        <ng-container *ngFor="let funcionario of this.funcionarios">
+          <ion-item>
+           <ion-button><ion-icon name="pencil-outline"></ion-icon>
+          </ion-button>
+           <ion-button (click)="remover(funcionario.CodFun)"><ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-col>
+ 
+ 
+ 
+ 
+  </ion-row>
+
+  
+
+
+  
 </ion-content>
