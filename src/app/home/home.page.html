@@ -1,22 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title class="centro">
+      <ion-label>Funcionário</ion-label>
+      <ion-button>Inserir</ion-button>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+ <ion-row>
+  <ion-col>
+    <ion-searchbar color="secondary" placeholder="Cargo"></ion-searchbar>
+  </ion-col>
+  <ion-col>
+    <ion-list>
+      <ion-item>
+        <ion-select aria-label="Fruit" placeholder="Filtrar" [multiple]="true">
+          <ion-select-option value="apples">Nome</ion-select-option>
+          <ion-select-option value="oranges">Cargo</ion-select-option>
+          <ion-select-option value="bananas">Cidade</ion-select-option>
+          <ion-select-option value="bananas">Telefone</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-col>
+ </ion-row>
 
-  <div id="container">
-    <h3>Projeto com Bootstrap e Ionic!</h3>
-    <hr>
-    <p>Componentes Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components"> - UI Components</a></p>
-    <p>Componentes Bootstrap <a target="_blank" rel="noopener noreferrer" href="https://getbootstrap.com/docs/5.3/components/buttons/"> - UI Components</a></p>
-  </div>
+ <ion-row>
+  <ion-col>
+    <ion-list>
+      <ng-container *ngFor="let funcionario of this.funcionarios">
+        
+        <h2>Nome</h2>
+        <ion-item>
+          Nome: {{ funcionario.Nome}} - {{funcionario.Cargo}}
+        </ion-item>
+      </ng-container>
+    </ion-list>
+  </ion-col>
+ </ion-row>
 </ion-content>
