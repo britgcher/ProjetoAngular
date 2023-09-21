@@ -77,21 +77,21 @@
         <h2>Funções</h2>
         <ng-container *ngFor="let funcionario of this.funcionarios">
           <ion-item>
-           <ion-button><ion-icon name="pencil-outline"></ion-icon>
+           <ion-button id="present-alert2"><ion-icon name="pencil-outline"></ion-icon>
           </ion-button>
-           <ion-button (click)="remover(funcionario.CodFun)"><ion-icon name="trash-outline"></ion-icon>
+           <ion-button id="excluir" (click) = "setCodigo(funcionario)"><ion-icon name="trash-outline"></ion-icon>
           </ion-button>
           </ion-item>
         </ng-container>
       </ion-list>
     </ion-col>
- 
- 
- 
- 
   </ion-row>
 
-  
+  <ion-alert
+  trigger="excluir"
+  header="Deseja excluir esse funcionário?"
+  [buttons]="alertButtons"
+></ion-alert>
 
 
   

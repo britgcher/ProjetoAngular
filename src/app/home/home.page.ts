@@ -13,6 +13,29 @@ import { IonicModule } from '@ionic/angular';
 export class HomePage {
   isLoading: boolean = false;
   funcionarios: any;
+  codigofuncionario: any;
+
+  public alertButtons = [
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'OK',
+      role: 'confirm',
+      handler: () => {
+        this.remover(this.codigofuncionario)
+      },
+    },
+  ];
+
+  setCodigo(codigo:any){ 
+    this.codigofuncionario = codigo
+  }
+
 
   constructor(){
     this.getFuncionarios();
@@ -33,7 +56,10 @@ export class HomePage {
     })
   }
 
-  remover(codigo:any){
+  
+
+  
+  remover(funcionario:any){
     this.isLoading = true;
     fetch('http://localhost/xampp/exercicio/funcionario/remover_funcionario.php',
 			{
@@ -41,7 +67,7 @@ export class HomePage {
 			  headers: {
 			    'Content-Type': 'application/json',
 			  },
-			  body: JSON.stringify({ CodFun: codigo, Acao: 'remover'})
+			  body: JSON.stringify(funcionario)
 			}
 		)
     .then(response => response.json())
@@ -56,4 +82,59 @@ export class HomePage {
       this.isLoading = false;
     })
   }
+
+  atualizar(codigo:any){
+    this.isLoading = true;
+    fetch('http://localhost/xampp/exercicio/funcionario/atualizar_funcionario.php',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ CodFun: codigo})
+      }
+    )
+    .then(response => response.json())
+    .then(response => {
+      console.log(response["mensagem"]);
+      this.getFuncionarios();
+    })
+    .catch(erro => {
+      console.log(erro);
+    })
+    .finally(()=>{
+      this.isLoading = false;
+    })
+  }
+
+  inserir(codigo:any){
+    this.isLoading = true;
+    fetch('http://localhost/xampp/exercicio/funcionario/atualizar_funcionario.php',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ CodFun: codigo})
+      }
+    )
+    .then(response => response.json())
+    .then(response => {
+      console.log(response["mensagem"]);
+      this.getFuncionarios();
+    })
+    .catch(erro => {
+      console.log(erro);
+    })
+    .finally(()=>{
+      this.isLoading = false;
+    })
+  }
+
+
+
+
 }
+
+
+
