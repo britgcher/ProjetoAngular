@@ -56,7 +56,6 @@ export class HomePage {
     })
   }
 
-  
 
   
   remover(funcionario:any){
@@ -107,31 +106,7 @@ export class HomePage {
     })
   }
 
-  inserir(codigo:any){
-    this.isLoading = true;
-    fetch('http://localhost/xampp/exercicio/funcionario/atualizar_funcionario.php',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ CodFun: codigo})
-      }
-    )
-    .then(response => response.json())
-    .then(response => {
-      console.log(response["mensagem"]);
-      this.getFuncionarios();
-    })
-    .catch(erro => {
-      console.log(erro);
-    })
-    .finally(()=>{
-      this.isLoading = false;
-    })
-  }
-
-
+ 
 
 
 }
