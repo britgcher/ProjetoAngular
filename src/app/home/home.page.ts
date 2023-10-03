@@ -15,6 +15,7 @@ export class HomePage {
   funcionarios: any;
   codigofuncionario: any;
 
+
   public alertButtons = [
     {
       text: 'Cancelar',
