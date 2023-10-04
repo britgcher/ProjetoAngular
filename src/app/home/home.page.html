@@ -2,8 +2,8 @@
   <ion-toolbar>
     <ion-title class="centro">
       <h3 class="funcionario">Funcionário 
-        <ion-button class="inserir"><ion-icon name="add-outline"></ion-icon>
-        </ion-button></h3>
+        <ion-button class="inserir"><ion-icon name="add-outline"></ion-icon></ion-button>
+      </h3>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -31,7 +31,7 @@
     <ion-col class="dados">
       <ion-list>
         <h2>Nome</h2>
-        <ng-container *ngFor="let funcionario of this.funcionarios">
+        <ng-container *ngFor="let funcionario of funcionarios">
           <ion-item class="Nome">
             {{ funcionario.Nome}} 
           </ion-item>
@@ -42,7 +42,7 @@
     <ion-col class="dados">
       <ion-list>
         <h2>Cargo</h2>
-        <ng-container *ngFor="let funcionario of this.funcionarios">
+        <ng-container *ngFor="let funcionario of funcionarios">
           <ion-item>
             {{ funcionario.Cargo}} 
           </ion-item>
@@ -53,7 +53,7 @@
     <ion-col class="dados">
       <ion-list>
         <h2>Cidade</h2>
-        <ng-container *ngFor="let funcionario of this.funcionarios">
+        <ng-container *ngFor="let funcionario of funcionarios">
           <ion-item>
             {{ funcionario.Cidade}} 
           </ion-item>
@@ -64,81 +64,68 @@
     <ion-col class="dados">
       <ion-list>
         <h2>Telefone</h2>
-        <ng-container *ngFor="let funcionario of this.funcionarios">
+        <ng-container *ngFor="let funcionario of funcionarios">
           <ion-item>
             {{ funcionario.Fone}} 
           </ion-item>
         </ng-container>
       </ion-list>
     </ion-col>
- 
+
     <ion-col class="dados">
       <ion-list>
         <h2>Funções</h2>
-        <ng-container *ngFor="let funcionario of this.funcionarios">
+        <ng-container *ngFor="let funcionario of funcionarios">
           <ion-item>
-           <ion-button id="atualizar" ><ion-icon name="pencil-outline"></ion-icon>
-          </ion-button>
-           <ion-button id="excluir" (click) = "setCodigo(funcionario)"><ion-icon name="trash-outline"></ion-icon>
-          </ion-button>
+            <ion-button (click)=" abrirModalAtualizar(true)">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+            <ion-button id="excluir" (click)="exibirAlertaExclusao(funcionario)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
           </ion-item>
         </ng-container>
       </ion-list>
     </ion-col>
-  </ion-row>
+  </ion-row> 
 
-  <ion-alert
+  <!-- alert -->
+<ion-alert
   trigger="excluir"
-  header="Deseja excluir esse funcionário?"
-  [buttons]="alertButtons"
+  header="Deseja Exlcuir o funcionario?"
 ></ion-alert>
 
-<ion-content class="ion-padding">
-  <ion-modal [isOpen]="isModalOpen">
+  <ion-modal [isOpen]="modalAtualizar">
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Atualizar Funcionário</ion-title>
+          <ion-title>Atualizar Clientes</ion-title>
           <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)">Fechar</ion-button>
+            <ion-button (click)="abrirModalAtualizar(false)">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <ion-input id="labelatualizar" label="Nome" label-placement="floating" fill="outline" placeholder="Nome"></ion-input>
-        <ion-input id="labelatualizar" label="Cargo" label-placement="floating" fill="outline" placeholder="Cargo"></ion-input>
-        <ion-input id="labelatualizar" label="Cidade" label-placement="floating" fill="outline" placeholder="Cidade"></ion-input>
-        <ion-input id="labelatualizar" label="Telefone" label-placement="floating" fill="outline" placeholder="Telefone"></ion-input>
-        <ion-button>Atualizar</ion-button>
+        <ion-row>
+          <ion-col>
+            <ion-input label="Nome" label-placement="floating" fill="outline" placeholder="Digite o nome"></ion-input>
+            <br>
+            <ion-input label="Cargo" label-placement="floating" fill="outline" placeholder="Digite o cargo"></ion-input>
+            <br>
+            <ion-input label="Cidade" label-placement="floating" fill="outline" placeholder="Digite a Cidade"></ion-input>
+            <br>
+            <ion-input label="Telefone" label-placement="floating" fill="outline" placeholder="Digite o telefone"></ion-input>
+            <br>
+            <ion-button id="atualizar" (click)="exibirAlertaAtualizar(codigoFuncionario)">Atualizar</ion-button>
+          </ion-col>
+        </ion-row>
       </ion-content>
     </ng-template>
   </ion-modal>
-</ion-content>
 
-<ion-content class="ion-padding">
-  <ion-modal [isOpen2]="isModalOpen">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Inserir Funcionário</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setOpen2(false)">Fechar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-input id="labelatualizar" label="Nome" label-placement="floating" fill="outline" placeholder="Nome"></ion-input>
-        <ion-input id="labelatualizar" label="Cargo" label-placement="floating" fill="outline" placeholder="Cargo"></ion-input>
-        <ion-input id="labelatualizar" label="Cidade" label-placement="floating" fill="outline" placeholder="Cidade"></ion-input>
-        <ion-input id="labelatualizar" label="Telefone" label-placement="floating" fill="outline" placeholder="Telefone"></ion-input>
-        <ion-button>Inserir</ion-button>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-</ion-content>
-      
-      
-    
+  <ion-alert
+  trigger="atualizar"
+  header="Deseja Atualizar o funcionario?"
+></ion-alert>
 
-      
 </ion-content>
