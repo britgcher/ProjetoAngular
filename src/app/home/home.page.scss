@@ -1,3 +1,4 @@
+
 #container {
   text-align: center;
   position: absolute;
@@ -6,6 +7,7 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
 
 #container strong {
   font-size: 20px;
@@ -38,14 +40,23 @@
 }
 
 ion-item{
-  --background: rgb(11, 0, 0);
+  --background: rgb(255, 255, 255);
+  border: 1px solid rgb(185, 203, 221);
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  align-items: center; 
+}
+
+.dados_fun{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 
 .dados{
-display: flex;
-justify-content: center;
-text-align: center;
-align-items: center;
+  background-color: rgb(255, 255, 255);
 }
 
 #labelatualizar{
@@ -55,5 +66,7 @@ align-items: center;
 
 }
 
-
+.icon{
+  padding: 4px;
+}
 

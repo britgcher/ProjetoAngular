@@ -27,6 +27,7 @@ export class HomePage {
   funcionarios: any; // Lista de funcionários
   codigoFuncionario: any; // Código do funcionário selecionado
   modalAtualizar = false; // Indicador de abertura do modal
+  modalInserir= false;
   
 
     // Construtor do componente
@@ -38,6 +39,8 @@ export class HomePage {
   setCodigo(codigo: any) {
     this.codigoFuncionario = codigo;
   }
+
+  //////////////////////////////////////////////////////////////////////////////////
 
  // Função para listar funcionários
  listarFuncionarios() {
@@ -123,7 +126,7 @@ export class HomePage {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ CodFun: codigo, Nome: novoNome, Cargo: novoCargo, Cidade: novaCidade, Fone: novoFone }),
+            body: JSON.stringify({ CodFun: codigo, Nome: novoNome, Cargo: novoCargo, Cidade: novaCidade, Fone: novoFone}),
         }
     )
     .then(response => response.json())
@@ -151,7 +154,7 @@ export class HomePage {
   async exibirAlertaAtualizar(codigoFuncionario: any) {
     const alert = await this.alertController.create({
       header: 'Confirmação',
-      message: 'Deseja excluir esse funcionário?',
+      message: 'Deseja Atualizar esse funcionário?',
       buttons: [
         {
           text: 'Cancelar',
@@ -172,6 +175,65 @@ export class HomePage {
     await alert.present();
   }
 
+
+// Função para inserir um funcionário
+inserir(codigo: any, novoNome: string, novoCargo: string, novaCidade: string, novoFone: string) {
+  this.isLoading = true;
+  
+  fetch('http://localhost/xampp/exercicio/funcionario/inserir_funcionario.php',
+      {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ CodFun: codigo, Nome: novoNome, Cargo: novoCargo, Cidade: novaCidade, Fone: novoFone}),
+      }
+  )
+  .then(response => response.json())
+  .then(response => {
+      console.log(response);
+      this.listarFuncionarios();
+  })
+  .catch(erro => {
+      console.log(erro);
+  })
+  .finally(() => {
+      this.isLoading = false;
+  });
+}
+
+
+// Função para abrir ou fechar o modal
+abrirModalInserir(isOpen: boolean) {
+this.modalInserir = isOpen;
+}
+
+
+
+//interligar
+async exibirAlertInserir(codigoFuncionario: any) {
+  const alert = await this.alertController.create({
+    header: 'Confirmação',
+    message: 'Deseja Inserir esse funcionário?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Exclusão cancelada');
+        }
+      }, {
+        text: 'OK',
+        handler: () => {
+          this.remover(codigoFuncionario);
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
 
 
 
